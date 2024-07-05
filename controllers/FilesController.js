@@ -108,8 +108,7 @@ export default class FilesController {
             type,
             isPublic,
             parentId: (parentId === ROOT_FOLDER_ID) || (parentId === ROOT_FOLDER_ID.toString()) ?
-                '0' :
-                new mongoDBCore.BSON.ObjectId(parentId),
+                '0' : new mongoDBCore.BSON.ObjectId(parentId),
         };
         await mkDirAsync(baseDir, { recursive: true });
         if (type !== VALID_FILE_TYPES.folder) {
@@ -132,8 +131,7 @@ export default class FilesController {
             type,
             isPublic,
             parentId: (parentId === ROOT_FOLDER_ID) || (parentId === ROOT_FOLDER_ID.toString()) ?
-                0 :
-                parentId,
+                0 : parentId,
         });
     }
 
@@ -158,8 +156,7 @@ export default class FilesController {
             type: file.type,
             isPublic: file.isPublic,
             parentId: file.parentId === ROOT_FOLDER_ID.toString() ?
-                0 :
-                file.parentId.toString(),
+                0 : file.parentId.toString(),
         });
     }
 
@@ -177,8 +174,7 @@ export default class FilesController {
         const filesFilter = {
             userId: user._id,
             parentId: parentId === ROOT_FOLDER_ID.toString() ?
-                parentId :
-                new mongoDBCore.BSON.ObjectId(isValidId(parentId) ? parentId : NULL_ID),
+                parentId : new mongoDBCore.BSON.ObjectId(isValidId(parentId) ? parentId : NULL_ID),
         };
 
         const files = await (await (await dbClient.filesCollection())
@@ -228,8 +224,7 @@ export default class FilesController {
             type: file.type,
             isPublic: true,
             parentId: file.parentId === ROOT_FOLDER_ID.toString() ?
-                0 :
-                file.parentId.toString(),
+                0 : file.parentId.toString(),
         });
     }
 
@@ -257,8 +252,7 @@ export default class FilesController {
             type: file.type,
             isPublic: false,
             parentId: file.parentId === ROOT_FOLDER_ID.toString() ?
-                0 :
-                file.parentId.toString(),
+                0 : file.parentId.toString(),
         });
     }
 
